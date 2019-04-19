@@ -236,3 +236,30 @@
   (+1 (zerop x)))
 ; Answer 1: It's wrong because zerop return T or NIL, and is trying to add 1 to that returned result.
 ; Ansert 2: (FOO 5) returns Error.
+
+
+;;; 3.23. Write each of the following functions in Church’s lambda notation:
+;;; a) DOUBLE
+;;; b) SQUARE
+;;; c) ONEMOREP.
+; Answer a: lambda n . n x 2
+; Answer b: lambda n . n x n
+; Answer c: lambda (x, y) . x = (y + 1)
+
+
+;;; 3.25. What do each of the following expressions evaluate to?
+(list 'cons t nil) ; (CONS T NIL)
+
+(eval (list 'cons t nil)) ; (T)
+
+(eval (eval (list 'cons t nil))) ; Error: T is undefined.
+
+(apply #'cons '(t nil)) ; (T)
+
+(eval nil) ; NIL
+
+(list 'eval nil) ; (EVAL NIL)
+
+(cons 'eval nil) ; (EVAL)
+
+(eval (list 'eval nil)) ; NIL

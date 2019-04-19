@@ -166,3 +166,73 @@
 (defun speak ((x) (y)) (list all 'x is 'y)) ; Answer: Required argument is not a symbol (Remove variables parenthesis!). ALL and IS must be quoted, not the variables.
 
 
+;;; 3.22.
+;;;
+;; a) Find out how to run Lisp on your computer, and start it up.
+; Answer: I use two different options: running SBCL through the CMD (at Windows), or running
+; Portacle, which is maybe the fastest and easiest Lisp solution for a beginner.
+
+
+;; b) For each following expression, write down what you think it evaluates to or what kind of
+;; error it will cause. Then try it on the computer and see.
+(+ 3 5) ; 8
+
+(3 + 5) ; Error: illegal function call "3"
+
+(+ 3 (5 6)) ; Error: illegal function call "5"
+
+(+ 3 (* 5 6)) ; 33
+
+'(morning noon night) ; (MORNING NOON NIGHT)
+
+('morning 'noon 'night) ; Error: illegal function call "'morning"
+
+(list 'morning 'noon 'night) ; (MORNING NOON NIGHT)
+
+(car nil) ; NIL
+
+(+ 3 foo) ; Error: illegal function call. Unasigned variable FOO
+
+(+ 3 'foo) ; Error: 'foo is not a number.
+
+
+;; c) Here is an example of the function MYFUN, a strange function of two inputs:
+(myfun 'alpha 'beta) ; ((ALPHA) BETA)
+
+;; Write MYFUN. Test your function to make certain it works correctly.
+(defun myfun (x y)
+  (list (list x) y))
+
+
+;; d) Write a predicate FIRSTP that returns T if its first argument (a symbol) is equal to the
+;; first element of its second argument (a list). That is, (FIRSTP 'FOO '(FOO BAR BAZ)) should
+;; return T. (FIRSTP 'BOING '(FOO BAR BAZ)) should return NIL.
+(defun firstp (x y)
+  (equal x (first y)))
+
+
+;; e) Write a function MID-ADD1 that adds 1 to the middle element of a three-element list.
+;; For example, (MID-ADD1 '(TAKE 2 COOKIES)) should return the list (TAKE 3 COOKIES).
+;; Note: You are not allowed to make MID-ADD1 a function of three inputs. It has to take a single
+;; input that is a list of three elements.
+(defun mid-add1 (x)
+  (list (first x) (+ 1 (second x)) (third x)))
+
+
+;; f) Write a function F-TO-C that converts a temperature from Fahrenheit to Celsius.
+;; The formula for doing the conversion is:
+;;                 Celsius temperature = [5 x (Fahrenheit temperature - 32)]/9.
+;; To go in the opposite direction, the formula is:
+;;                 Fahrenheit temperature = (9/5 x Celsius temperature) + 32.
+(defun f-to-c (x)
+  (/ (* 5 (- x 32.0)) 9))
+
+(defun c-to-f (x)
+  (+ (* 9/5 x) 32.0))
+
+
+;; g) What is wrong with this function? What does (FOO 5) do?
+(defun foo (x)
+  (+1 (zerop x)))
+; Answer 1: It's wrong because zerop return T or NIL, and is trying to add 1 to that returned result.
+; Ansert 2: (FOO 5) returns Error.

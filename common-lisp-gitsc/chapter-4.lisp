@@ -283,3 +283,49 @@
            (> temp 212))
       (and (equal scale 'celsius)
            (> temp 100))))
+
+
+;;; 4.29. Write versions of LOGICAL-AND using IF and COND instead of AND.
+(defun logical-and (x y) (and x y t))
+
+(defun logical-and-2 (x y)
+  (if x
+    (if y t)))
+
+(defun logical-and-3 (x y)
+  (cond (x (cond (y t))))
+
+
+;;; 4.30. Write LOGICAL-OR. Make sure it returns only T or NIL for its result.
+(defun logical-or (x y)
+  (cond (x t)
+        (y t)
+        (t nil)))
+
+
+;;; 4.31. Is NOT a conditional? Is it a boolean function?
+;;; Do you need to write a LOGICAL-NOT function?
+
+; Answer: NOT is a boolean function that always evaluates its input, returning T or NIL.
+; So, is not neccesary to write a LOGICAL-NOT function.
+
+
+;;; 4.32. Construct a truth table for LOGICAL-OR.
+; Answer:
+;     |   x   |   x   | (LOGICAL-OR x y) |
+;     +-------+-------+------------------+
+;     |   T   |   T   |        T         |
+;     +-------+-------+------------------+
+;     |   T   |  NIL  |        T         |
+;     +-------+-------+------------------+
+;     |  NIL  |   T   |        T         |
+;     +-------+-------+------------------+
+;     |  NIL  |  NIL  |       NIL        |
+;     +-------+-------+------------------+
+
+
+;;; 4.33. Imagine a LOGICAL-IF function that works like IF does, except it always
+;;; takes exactly three inputs, and its outputs are limited to T or NIL.
+;;; How many lines are in its truth table?
+
+; Answer: There will be 8 lines (2^3).

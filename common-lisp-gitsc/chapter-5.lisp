@@ -49,3 +49,29 @@
 (defun throw-dices ()
 "Returns a list with two THROW-DICE results."
   (list (throw-dice) (throw-dice)))
+
+;; c) Throwing thwo ones is called "snake eyes"; two sixes is called "boxcars". Write
+;; predicates SNAKE-EYES-P and BOXCARS-P that take a throw as input and return T if the
+;; throw is equal to (1 1) or (6 6), respectively.
+(defun snake-eyes-p (throw)
+  (print throw) ; prints throw result, just for curiosity.
+  (equal throw '(1 1)))
+
+(defun boxcars-p (throw)
+  (print throw) ; prints throw result, just for curiosity.
+  (equal throw '(6 6)))
+
+;; d) In playing craps, the first throw of the dice is crucial. A throw of 7
+;; or 11 is an instant win. A throw of 2, 3, or 12 is an instant loss (American casino rules).
+;; Write predicates INSTANT-WIN-P and INSTANT-LOSS-P to detect these conditions.
+;; Each should take a throw as input.
+(defun instant-win-p (throw)
+  (cond ((equal (+ (first throw) (second throw)) 7) 'you-win)
+        ((equal (+ (first throw) (second throw)) 11) 'you-win)
+        (t throw)))
+
+(defun instant-loss-p (throw)
+  (cond ((equal (+ (first throw) (second throw)) 2) 'you-lose)
+        ((equal (+ (first throw) (second throw)) 3) 'you-lose)
+        ((equal (+ (first throw) (second throw)) 12) 'you-lose)
+        (t throw)))
